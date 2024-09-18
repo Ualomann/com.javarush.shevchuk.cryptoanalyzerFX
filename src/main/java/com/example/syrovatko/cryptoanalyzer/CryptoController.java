@@ -84,7 +84,7 @@ public class CryptoController {
             if (file.toPath() != null) {
                 System.out.println("Ключ: " + key + ", Файл: " + file.getAbsolutePath());
                 errorLabel.setText("");
-                Sipher.encrypt(key, file.toPath());
+                Sipher.encryptDecrypt(key, file.toPath(),true);
                 successLabel.setText("Текст зашифрован!");
             } else if(file.toPath() == null){
                 errorLabel.setText("Файл не выбран");
@@ -178,7 +178,7 @@ public class CryptoController {
             if (file.toPath() != null) {
                 System.out.println("Ключ: " + key + ", Файл: " + file.getAbsolutePath());
                 errorLabel2.setText("");
-                Sipher.decrypt(key, file.toPath());
+                Sipher.encryptDecrypt(key, file.toPath(),false);
                 successLabelDecrypt.setText("Текст Расшифрован!");
             } else if(file.toPath() == null){
                 errorLabel2.setText("Файл не выбран");
@@ -285,7 +285,7 @@ public class CryptoController {
             if (file.toPath() != null) {
                 System.out.println("Ключ: " + key + ", Файл: " + file.getAbsolutePath());
                 errorLabel2.setText("");
-                Sipher.decrypt(key, file.toPath());
+                Sipher.encryptDecrypt(key, file.toPath(),false);
                 successLabelDecrypt.setText("Текст Расшифрован!");
             } else if(file.toPath() == null){
                 errorLabel2.setText("Файл не выбран");

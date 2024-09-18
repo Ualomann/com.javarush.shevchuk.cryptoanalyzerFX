@@ -13,7 +13,7 @@ public class BruteForce {
         HashSet<String> wordBook = FileManager.readRusWordbook();
         Validator.isEmpty(text);
         OUTER:
-        for (int key = 0; key < Alphabet.ALPHABET.length; key++) {
+        for (int key = 1; key < Alphabet.ALPHABET.length; key++) {
             char[] text2 = text.clone();
 
 
@@ -27,7 +27,7 @@ public class BruteForce {
 
                     if (Character.toLowerCase(Alphabet.ALPHABET[j]) == aboutCase) {
                         char decryptChar = Alphabet.ALPHABET[(j - key + Alphabet.ALPHABET.length) % Alphabet.ALPHABET.length];
-                        text2[i] = isUpperCase? Character.toUpperCase(decryptChar):decryptChar;
+                        text2[i] = isUpperCase ? Character.toUpperCase(decryptChar) : decryptChar;
                         break;
                     }
                 }
@@ -35,20 +35,23 @@ public class BruteForce {
 
 
             String textToDecrypt = new String(text2);
-            String stroka = textToDecrypt.substring(0, 60).toLowerCase();
+            String stroka = "";
+            if(textToDecrypt.length() > 60) {
+                stroka = textToDecrypt.substring(0, 60).toLowerCase();
+            }
+            else if(textToDecrypt.length() < 60){
+                stroka = textToDecrypt.substring(0, textToDecrypt.length()).toLowerCase();
+            }
 
 
             String[] words = stroka.split("\\s+");
-
             for (String word : words) {
                 if (wordBook.contains(word)) {
-
-                    text = text2;
-                    break OUTER;
+                        text = text2;
+                        break OUTER;
                 }
             }
         }
         FileManager.writeFile(text, "БРУТ", path);
-
     }
 }
