@@ -231,14 +231,18 @@ public class CryptoController {
                 errorLabel3.setText("Неверный формат файла. Пожалуйста, выберите .txt файл.");
                 file = null;
                 bruteForceButton.setDisable(true);
+                saveResultInFile.setDisable(true);
             }
         } else {
             System.out.println(file);
             errorLabel3.setText("");
+            saveResultInFile.setDisable(false);
             checkIfReadyDecrypt();
         }
         okFileLabel3.setText("✔");
+        saveResultInFile.setDisable(false);
         if (file == null) {
+            saveResultInFile.setDisable(true);
             okFileLabel3.setText("");
         }
 
@@ -269,6 +273,7 @@ public class CryptoController {
             successLabelBrutForce.setText("Текст Расшифрован!");
         } else if (file.toPath() == null) {
             errorLabel3.setText("Файл не выбран");
+            saveResultInFile.setDisable(true);
         }
 
     }
@@ -310,7 +315,7 @@ public class CryptoController {
     private Button prevButton;
 
     @FXML
-    private Button decryptButton; // Кнопка для окончательной расшифровки //Для этого уже есть кнопка
+    private Button saveResultInFile; // Кнопка для окончательной расшифровки
 
     @FXML
     private Label textInputFile;  // Поле для вывода текста
@@ -319,32 +324,54 @@ public class CryptoController {
     private RadioButton bruteForceMode2;
 
     private int keyy = 0;  // Текущий ключ
-//    private Path filePath = Paths.get("path/to/your/file.txt"); // путь мы получим через другое
+
 
     @FXML
-    private void prevNextText() {
+    public void prevNextText() {
+        System.out.println("Вызывается ли?");
         nextButton.setOnAction(event -> {
-            if (bruteForceMode2.isSelected()) {
-                keyy++;
-                String result = BruteForce.bruteForce2(file.toPath(), keyy, true, false);
-                textInputFile.setText(result);
+            System.out.println("Вперёд?");
+            if(keyy < Alphabet.ALPHABET.length) {
+                if (bruteForceMode2.isSelected()) {
+                    errorLabel3.setText("");
+                    keyy++;
+                    String result = BruteForce.bruteForce2(file.toPath(), keyy, true, false);
+                    System.out.print(result + " ");
+                    textInputFile.setText(result);
+                }
+            }
+            else{
+                errorLabel3.setText("Верхняя граница ключа");
             }
         });
 
         prevButton.setOnAction(event -> {
             if (bruteForceMode2.isSelected()) {
 
-                if (keyy >= 0) {
+                if (keyy > 0) {
+                    errorLabel3.setText("");
+                    System.out.println("Назад?");
                     keyy--;
                     String result = BruteForce.bruteForce2(file.toPath(), keyy, false, true);
+                    System.out.print(result + " ");
                     textInputFile.setText(result);
                 } else {
                     errorLabel3.setText("Ключ не может быть меньше 0!");
                 }
+
             }
         });
 
+        saveResultInFile.setOnAction(event -> {
+            Sipher.encryptDecrypt(keyy, file.toPath(),false,false);
+            textInputFile.setText("Текст расшифрован с ключом: " + keyy);
+        });
 
+    }
+
+    @FXML
+    public void initialize(){
+        prevNextText();
     }
 
 }

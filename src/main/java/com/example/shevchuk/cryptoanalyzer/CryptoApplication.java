@@ -15,9 +15,11 @@ public class CryptoApplication extends Application {
         stage.setTitle("JRU Halloween Cryptoanalyzer!");
         stage.setScene(scene);
         stage.show();
+
     }
 
     public static void main(String[] args) {
+
         launch();
     }
 }

@@ -53,17 +53,17 @@
                   </Button>
                   <ImageView fitHeight="85.0" fitWidth="99.0" layoutX="323.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../image/key.png" />
+                        <Image url="@image/key.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="505.0" layoutY="311.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../image/caes.png" />
+                        <Image url="@image/caes.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="119.0" fitWidth="146.0" layoutY="327.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../image/lock.png" />
+                        <Image url="@image/lock.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="errorLabel" layoutX="10.0" layoutY="259.0" prefHeight="64.0" prefWidth="635.0" text="" textFill="#ff0a0a">
@@ -120,17 +120,17 @@
                   </Button>
                   <ImageView fitHeight="85.0" fitWidth="99.0" layoutX="285.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../image/key.png" />
+                        <Image url="@image/key.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="505.0" layoutY="308.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../image/caes.png" />
+                        <Image url="@image/caes.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="119.0" fitWidth="146.0" layoutX="14.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../image/unlock.png" />
+                        <Image url="@image/unlock.png" />
                      </image>
                   </ImageView>
                   <Separator layoutX="4.0" layoutY="78.0" prefHeight="8.0" prefWidth="646.0" />
@@ -174,12 +174,12 @@
                   </Button>
                   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="-1.0" layoutY="317.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../image/crowbar.png" />
+                        <Image url="@image/crowbar.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="505.0" layoutY="303.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../image/broken padlock.png" />
+                        <Image url="@image/brokenPadlock.png" />
                      </image>
                   </ImageView>
                   <Button fx:id="bruteForceButton" disable="true" layoutX="194.0" layoutY="349.0" mnemonicParsing="false" onAction="#onBruteForceButtonClick" text="Ave, Caesar!">
@@ -202,15 +202,19 @@
                         <Font size="28.0" />
                      </font>
                   </Label>
-                  <RadioButton layoutX="34.0" layoutY="180.0" mnemonicParsing="false" text="Режим работы 1" />
-                  <RadioButton layoutX="34.0" layoutY="206.0" mnemonicParsing="false" text="Режим работы 2" />
-                  <Label layoutX="167.0" layoutY="174.0" prefHeight="46.0" prefWidth="453.0">
+                  <RadioButton fx:id="bruteForceMode2" layoutX="59.0" layoutY="255.0" mnemonicParsing="false" text="Режим работы 2" />
+                  <Label fx:id="textInputFile" layoutX="66.0" layoutY="174.0" prefHeight="64.0" prefWidth="575.0">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Button layoutX="333.0" layoutY="228.0" mnemonicParsing="false" text="Назад" />
-                  <Button layoutX="403.0" layoutY="228.0" mnemonicParsing="false" text="Далее" />
+                  <Button fx:id="prevButton" layoutX="215.0" layoutY="251.0" mnemonicParsing="false" text="Назад" />
+                  <Button fx:id="nextButton" layoutX="277.0" layoutY="251.0" mnemonicParsing="false" text="Далее" />
+                  <Button fx:id="saveResultInFile" disable="true" layoutX="353.0" layoutY="244.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="202.0" text="Сохранить текст в файл">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
          </content>
@@ -219,7 +223,7 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <TextArea layoutY="6.0" prefHeight="450.0" prefWidth="655.0" text="FAQ КАК ПОЛЬЗОВАТЬСЯ ПРОГРАММОЙ &#10;Программа работает только с txt файлами с кодировкой UTF-8&#10;ШИФРОВКА:&#10;Для шифровки текста нажмите на &quot;Открыть файл&quot; и выберите файл который собираетесь зашифровать, далее&#10;введите ключ (целое положительное число) по которому будете его зашифровывать , после нажмите на кнопку&#10;&quot;ЗАШИФРОВАТЬ!&quot;&#10;&#10;ДЕШИФРОВКА:&#10;Для расшифровки текста нажмите на &quot;Открыть файл&quot; и выберите файл который собираетесь расшифровать,&#10;далее введите ключ (целое положительное число) по которому будете его расшифровывать, после нажмите на&#10;кнопку &quot;РАСШИФРОВАТЬ!&quot;&#10;&#10;БРУТФОРС:&#10;Расшифровка брутфорсом работает в двух режимах:&#10;Первый - работает быстро, содержит большую базу слов, и вероятнее всего расшифрует ваш текст, но если&#10;вдруг этого не произойдёт, вы можете воспользоваться режимом №2. Откройте файл, выберите &quot;Режим &#10;работы 1&quot; и нажмите на кнопку &quot;Ave, Caesar!&quot;&#10;&#10;Второй - перебирает варианты кнопками &quot;Вперёд&quot; и &quot;Назад&quot;. Как только нужный вам вариант будет найден,&#10;нажмите кнопку &quot;Ave, Caesar!&quot; и нужный вам вариант будет записан в файл.(Ещё не реализовано)&#10;&#10;СОХРАНЕНИЕ ФАЙЛОВ:&#10;Файлы сохраняются по тому пути, который был указан при открытии файла и имеют следующий вид:&#10;При шифровке к названию файла добавляется: ШИФР.txt&#10;При дешифровке: ДЕШИФР.txt &#10;При брутфорсе: БРУТ.txt &#10;&#10;" />
+                  <TextArea layoutY="6.0" prefHeight="450.0" prefWidth="655.0" text="FAQ КАК ПОЛЬЗОВАТЬСЯ ПРОГРАММОЙ &#10;Программа работает только с txt файлами с кодировкой UTF-8&#10;ШИФРОВКА:&#10;Для шифровки текста нажмите на &quot;Открыть файл&quot; и выберите файл который собираетесь зашифровать, далее&#10;введите ключ (целое положительное число) по которому будете его зашифровывать , после нажмите на кнопку&#10;&quot;ЗАШИФРОВАТЬ!&quot;&#10;&#10;ДЕШИФРОВКА:&#10;Для расшифровки текста нажмите на &quot;Открыть файл&quot; и выберите файл который собираетесь расшифровать,&#10;далее введите ключ (целое положительное число) по которому будете его расшифровывать, после нажмите на&#10;кнопку &quot;РАСШИФРОВАТЬ!&quot;&#10;&#10;БРУТФОРС:&#10;Расшифровка брутфорсом работает в двух режимах:&#10;&#10;Первый - работает быстро, содержит большую базу слов, и вероятнее всего расшифрует ваш текст, но если&#10;вдруг этого не произойдёт, вы можете воспользоваться режимом №2. Откройте файл и нажмите на&#10;кнопку &quot;Ave, Caesar!&quot;&#10;&#10;Второй - перебирает варианты кнопками &quot;Вперёд&quot; и &quot;Назад&quot;. Для включения Откройте файл, переключите&#10;кнопку &quot;Режим работы 2&quot; в активное положение, далее при помощи кнопок &quot;Вперёд&quot; и &quot;Назад&quot; переключайте&#10;варианты текста до тех пор, пока нужный вам вариант не будет найден, после воспользуйтесь кнопкой&#10;&quot;Записать в файл&quot; и запишите полученный текст в файл. &#10;&#10;СОХРАНЕНИЕ ФАЙЛОВ:&#10;Файлы сохраняются по тому пути, который был указан при открытии файла и имеют следующий вид:&#10;При шифровке к названию файла добавляется: ШИФР&#10;При дешифровке: ДЕШИФР&#10;При брутфорсе: БРУТ&#10;При брутфорсе который работает во втором режиме: ДЕШИФР&#10;&#10;" />
                </children>
             </AnchorPane>
         </content>

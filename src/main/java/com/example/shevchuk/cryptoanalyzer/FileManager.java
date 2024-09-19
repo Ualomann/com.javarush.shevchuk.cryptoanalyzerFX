@@ -23,8 +23,20 @@ public class FileManager {
 
     public static void writeFile(char[] text, String state, Path path) {
         try {
+            String fileName = path.getFileName().toString().trim();
+
+            if(fileName.endsWith(".txt")){
+                fileName = fileName.substring(0,fileName.length()-4);
+            }
+            if(fileName.endsWith(" ШИФР")){
+                fileName = fileName.substring(0,fileName.length()-5);
+            }
+
+            String endFileName = fileName+" " + state + ".txt";
+            Path endPath = path.getParent().resolve(endFileName);
             String con = new String(text);
-            Files.write(Paths.get(path + state + ".txt"), con.getBytes(),
+
+            Files.write(endPath, con.getBytes(),
                     StandardOpenOption.CREATE, StandardOpenOption.WRITE);
             System.out.println(state);
         } catch (IOException e) {
