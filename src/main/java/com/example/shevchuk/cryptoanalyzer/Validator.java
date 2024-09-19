@@ -1,4 +1,4 @@
-package com.example.syrovatko.cryptoanalyzer;
+package com.example.shevchuk.cryptoanalyzer;
 
 import java.nio.file.Files;
 import java.nio.file.Path;

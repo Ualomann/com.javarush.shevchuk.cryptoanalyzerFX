@@ -1,4 +1,4 @@
-package com.example.syrovatko.cryptoanalyzer;
+package com.example.shevchuk.cryptoanalyzer;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -18,7 +18,7 @@ public class StartProgramm {
             Path path = Paths.get(console.nextLine());
             System.out.println("Введите ключ шифровки(Число):");
             int key = console.nextInt();
-            Sipher.encryptDecrypt(key,path,true);
+            Sipher.encryptDecrypt(key,path,true,false);
         }
         else if(choise.equals(2+"")){
             System.out.println();
@@ -26,7 +26,7 @@ public class StartProgramm {
             Path path = Paths.get(console.nextLine());
             System.out.println("Введите ключ расшифровки:");
             int key = console.nextInt();
-            Sipher.encryptDecrypt(key,path,false);
+            Sipher.encryptDecrypt(key,path,false,false);
         }
         else if(choise.equals(3+"")){
             System.out.println();

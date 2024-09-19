@@ -1,9 +1,7 @@
-package com.example.syrovatko.cryptoanalyzer;
+package com.example.shevchuk.cryptoanalyzer;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -36,26 +34,25 @@ public class CryptoController {
         // УСТАНАВЛИВАЕМ ЗАГОЛОВОК ОКНА
         fileChooser.setTitle("ОТКРЫТЬ ФАЙЛ");
         // УСТАНАВЛИВАЕМ ФИЛЬТР КОТОРЫЙ ОТСЕКАЕТ ВСЕ ФОРМАТЫ КРОМЕ TXT
-        FileChooser.ExtensionFilter txtFilter = new FileChooser.ExtensionFilter("TXT files(*.txt)","*.txt");
+        FileChooser.ExtensionFilter txtFilter = new FileChooser.ExtensionFilter("TXT files(*.txt)", "*.txt");
         fileChooser.getExtensionFilters().add(txtFilter);
 
         // В МОМЕНТ ВЫБОРА ФАЙЛА ПУТЬ К НЕМУ ЗАПИШЕТСЯ В ПЕРЕМЕННУЮ file
         file = fileChooser.showOpenDialog(new Stage());
         //Проверка на случай если пользователь проведёт какие-то манипуляции с файлом обходя фильтр
-        if(file!=null){
-            if (!file.getName().endsWith(".txt")){
+        if (file != null) {
+            if (!file.getName().endsWith(".txt")) {
                 errorLabel.setText("Неверный формат файла. Пожалуйста, выберите .txt файл.");
                 file = null;
                 encryptButton.setDisable(true);
             }
-        }
-        else{
+        } else {
             System.out.println(file);
             errorLabel.setText("");
             checkIfReady();
         }
         okFileLabel.setText("✔");
-        if(file == null){
+        if (file == null) {
             okFileLabel.setText("");
         }
 
@@ -64,14 +61,14 @@ public class CryptoController {
         checkIfReady();
     }
 
-        @FXML
-        protected void onEncryptButtonClick () {
-            System.out.println("test button");
-            handleEncryptButton();
-            // Блокировка кнопки и сброс состояния после шифрования
-            encryptButton.setDisable(true);
-            keyField.clear(); // Сброс поля ключа, если необходимо
-        }
+    @FXML
+    protected void onEncryptButtonClick() {
+        System.out.println("test button");
+        handleEncryptButton();
+        // Блокировка кнопки и сброс состояния после шифрования
+        encryptButton.setDisable(true);
+        keyField.clear(); // Сброс поля ключа, если необходимо
+    }
 
 
     @FXML
@@ -84,9 +81,9 @@ public class CryptoController {
             if (file.toPath() != null) {
                 System.out.println("Ключ: " + key + ", Файл: " + file.getAbsolutePath());
                 errorLabel.setText("");
-                Sipher.encryptDecrypt(key, file.toPath(),true);
+                Sipher.encryptDecrypt(key, file.toPath(), true, false);
                 successLabel.setText("Текст зашифрован!");
-            } else if(file.toPath() == null){
+            } else if (file.toPath() == null) {
                 errorLabel.setText("Файл не выбран");
             }
         } catch (NumberFormatException e) {
@@ -94,6 +91,7 @@ public class CryptoController {
             errorLabel.setText("Некорректный ключ");
         }
     }
+
     @FXML
     private void checkIfReady() {
         String keyInput = keyField.getText();
@@ -130,26 +128,25 @@ public class CryptoController {
         // УСТАНАВЛИВАЕМ ЗАГОЛОВОК ОКНА
         fileChooser.setTitle("ОТКРЫТЬ ФАЙЛ");
         // УСТАНАВЛИВАЕМ ФИЛЬТР КОТОРЫЙ ОТСЕКАЕТ ВСЕ ФОРМАТЫ КРОМЕ TXT
-        FileChooser.ExtensionFilter txtFilter = new FileChooser.ExtensionFilter("TXT files(*.txt)","*.txt");
+        FileChooser.ExtensionFilter txtFilter = new FileChooser.ExtensionFilter("TXT files(*.txt)", "*.txt");
         fileChooser.getExtensionFilters().add(txtFilter);
 
         // В МОМЕНТ ВЫБОРА ФАЙЛА ПУТЬ К НЕМУ ЗАПИШЕТСЯ В ПЕРЕМЕННУЮ file
         file = fileChooser.showOpenDialog(new Stage());
         //Проверка на случай если пользователь проведёт какие-то манипуляции с файлом обходя фильтр
-        if(file!=null){
-            if (!file.getName().endsWith(".txt")){
+        if (file != null) {
+            if (!file.getName().endsWith(".txt")) {
                 errorLabel2.setText("Неверный формат файла. Пожалуйста, выберите .txt файл.");
                 file = null;
                 decryptButton2.setDisable(true);
             }
-        }
-        else{
+        } else {
             System.out.println(file);
             errorLabel2.setText("");
             checkIfReadyDecrypt();
         }
         okFileLabel2.setText("✔");
-        if(file == null){
+        if (file == null) {
             okFileLabel2.setText("");
         }
 
@@ -159,7 +156,7 @@ public class CryptoController {
     }
 
     @FXML
-    protected void onDecryptButtonClick () {
+    protected void onDecryptButtonClick() {
         System.out.println("test button");
         handleDecryptButton();
         // Блокировка кнопки и сброс состояния после дешифрования
@@ -178,9 +175,9 @@ public class CryptoController {
             if (file.toPath() != null) {
                 System.out.println("Ключ: " + key + ", Файл: " + file.getAbsolutePath());
                 errorLabel2.setText("");
-                Sipher.encryptDecrypt(key, file.toPath(),false);
+                Sipher.encryptDecrypt(key, file.toPath(), false, false);
                 successLabelDecrypt.setText("Текст Расшифрован!");
-            } else if(file.toPath() == null){
+            } else if (file.toPath() == null) {
                 errorLabel2.setText("Файл не выбран");
             }
         } catch (NumberFormatException e) {
@@ -223,26 +220,25 @@ public class CryptoController {
         // УСТАНАВЛИВАЕМ ЗАГОЛОВОК ОКНА
         fileChooser.setTitle("ОТКРЫТЬ ФАЙЛ");
         // УСТАНАВЛИВАЕМ ФИЛЬТР КОТОРЫЙ ОТСЕКАЕТ ВСЕ ФОРМАТЫ КРОМЕ TXT
-        FileChooser.ExtensionFilter txtFilter = new FileChooser.ExtensionFilter("TXT files(*.txt)","*.txt");
+        FileChooser.ExtensionFilter txtFilter = new FileChooser.ExtensionFilter("TXT files(*.txt)", "*.txt");
         fileChooser.getExtensionFilters().add(txtFilter);
 
         // В МОМЕНТ ВЫБОРА ФАЙЛА ПУТЬ К НЕМУ ЗАПИШЕТСЯ В ПЕРЕМЕННУЮ file
         file = fileChooser.showOpenDialog(new Stage());
         //Проверка на случай если пользователь проведёт какие-то манипуляции с файлом обходя фильтр
-        if(file!=null){
-            if (!file.getName().endsWith(".txt")){
+        if (file != null) {
+            if (!file.getName().endsWith(".txt")) {
                 errorLabel3.setText("Неверный формат файла. Пожалуйста, выберите .txt файл.");
                 file = null;
                 bruteForceButton.setDisable(true);
             }
-        }
-        else{
+        } else {
             System.out.println(file);
             errorLabel3.setText("");
             checkIfReadyDecrypt();
         }
         okFileLabel3.setText("✔");
-        if(file == null){
+        if (file == null) {
             okFileLabel3.setText("");
         }
 
@@ -250,8 +246,9 @@ public class CryptoController {
         System.out.println(file);
         checkIfReadyBruteForce();
     }
+
     @FXML
-    protected void onDecryptButtonClick3 () {
+    protected void onDecryptButtonClick3() {
         System.out.println("test button");
         handleBruteForceButton();
         // Блокировка кнопки и сброс состояния после дешифрования
@@ -265,34 +262,29 @@ public class CryptoController {
         successLabelBrutForce.setText("");
         okFileLabel3.setText("");
 
-            if (file.toPath() != null) {
-                System.out.println("Файл: " + file.getAbsolutePath());
-                errorLabel3.setText("");
-                BruteForce.bruteForce(file.toPath());
-                successLabelBrutForce.setText("Текст Расшифрован!");
-            } else if(file.toPath() == null){
-                errorLabel3.setText("Файл не выбран");
-            }
+        if (file.toPath() != null) {
+            System.out.println("Файл: " + file.getAbsolutePath());
+            errorLabel3.setText("");
+            BruteForce.bruteForce(file.toPath());
+            successLabelBrutForce.setText("Текст Расшифрован!");
+        } else if (file.toPath() == null) {
+            errorLabel3.setText("Файл не выбран");
+        }
 
     }
+
     @FXML
     private void handleBruteForceButton() {
         errorLabel2.setText("");
         successLabelDecrypt.setText("");
         okFileLabel2.setText("");
-        try {
-            key = Integer.parseInt(keyField2.getText()); // Присваиваем значение ключа
-            if (file.toPath() != null) {
-                System.out.println("Ключ: " + key + ", Файл: " + file.getAbsolutePath());
-                errorLabel2.setText("");
-                Sipher.encryptDecrypt(key, file.toPath(),false);
-                successLabelDecrypt.setText("Текст Расшифрован!");
-            } else if(file.toPath() == null){
-                errorLabel2.setText("Файл не выбран");
-            }
-        } catch (NumberFormatException e) {
-            successLabelDecrypt.setText("");
-            errorLabel2.setText("Некорректный ключ");
+
+        if (file.toPath() != null) {
+            System.out.println("Файл: " + file.getAbsolutePath());
+            errorLabel2.setText("");
+            successLabelDecrypt.setText("Текст Расшифрован!");
+        } else if (file.toPath() == null) {
+            errorLabel2.setText("Файл не выбран");
         }
     }
 
@@ -309,6 +301,53 @@ public class CryptoController {
         }
     }
 
+    ///////////////////////////////////////////////
+
+    @FXML
+    private Button nextButton;
+
+    @FXML
+    private Button prevButton;
+
+    @FXML
+    private Button decryptButton; // Кнопка для окончательной расшифровки //Для этого уже есть кнопка
+
+    @FXML
+    private Label textInputFile;  // Поле для вывода текста
+
+    @FXML
+    private RadioButton bruteForceMode2;
+
+    private int keyy = 0;  // Текущий ключ
+//    private Path filePath = Paths.get("path/to/your/file.txt"); // путь мы получим через другое
+
+    @FXML
+    private void prevNextText() {
+        nextButton.setOnAction(event -> {
+            if (bruteForceMode2.isSelected()) {
+                keyy++;
+                String result = BruteForce.bruteForce2(file.toPath(), keyy, true, false);
+                textInputFile.setText(result);
+            }
+        });
+
+        prevButton.setOnAction(event -> {
+            if (bruteForceMode2.isSelected()) {
+
+                if (keyy >= 0) {
+                    keyy--;
+                    String result = BruteForce.bruteForce2(file.toPath(), keyy, false, true);
+                    textInputFile.setText(result);
+                } else {
+                    errorLabel3.setText("Ключ не может быть меньше 0!");
+                }
+            }
+        });
+
+
+    }
+
 }
+
 
 

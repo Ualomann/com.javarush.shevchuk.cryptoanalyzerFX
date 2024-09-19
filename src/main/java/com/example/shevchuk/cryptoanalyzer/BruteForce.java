@@ -1,11 +1,11 @@
-package com.example.syrovatko.cryptoanalyzer;
+package com.example.shevchuk.cryptoanalyzer;
 
 import java.nio.file.Path;
 import java.util.HashSet;
 
 
 public class BruteForce {
-
+    public static String windowWithText;
 
     public static void bruteForce(Path path) {
         Validator.isEmpty(path);
@@ -33,25 +33,52 @@ public class BruteForce {
                 }
             }
 
-
             String textToDecrypt = new String(text2);
             String stroka = "";
-            if(textToDecrypt.length() > 60) {
+
+            if (textToDecrypt.length() > 60) {
                 stroka = textToDecrypt.substring(0, 60).toLowerCase();
-            }
-            else if(textToDecrypt.length() < 60){
+            } else if (textToDecrypt.length() < 60) {
                 stroka = textToDecrypt.substring(0, textToDecrypt.length()).toLowerCase();
             }
-
 
             String[] words = stroka.split("\\s+");
             for (String word : words) {
                 if (wordBook.contains(word)) {
-                        text = text2;
-                        break OUTER;
+                    text = text2;
+                    break OUTER;
                 }
             }
         }
         FileManager.writeFile(text, "БРУТ", path);
     }
+
+    //    public static void bruteForce2(Path path, boolean next, boolean prev, boolean writeResult) {
+//        int key = 0;
+//        while (true) {
+//            if (next) {
+//                windowWithText = Sipher.encryptDecrypt(key, path, false, true);
+//                key++;
+//            } else if (prev) {
+//                windowWithText = Sipher.encryptDecrypt(key, path, false, true);
+//                key--;
+//            } else if (writeResult) {
+//                Sipher.encryptDecrypt(key,path,true,false);
+//                break;
+//            }
+//        }
+//    }
+    public static String bruteForce2(Path path, int key, boolean next, boolean prev) {
+        String result = "";
+
+        if (next) {
+            result = Sipher.encryptDecrypt(key, path, false, true);  // Возвращаем часть текста
+        } else if (prev) {
+            result = Sipher.encryptDecrypt(key, path, true, true); // Возвращаем часть текста
+        }
+
+        return result;
+    }
+
 }
+

@@ -61,7 +61,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.example.syrovatko.cryptoanalyzer/com.example.syrovatko.cryptoanalyzer.HelloApplication
+                                com.example.syrovatko.cryptoanalyzer/com.example.shevchuk.cryptoanalyzer.CryptoApplication
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

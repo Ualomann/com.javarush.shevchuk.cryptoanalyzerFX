@@ -1,4 +1,4 @@
-package com.example.syrovatko.cryptoanalyzer;
+package com.example.shevchuk.cryptoanalyzer;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

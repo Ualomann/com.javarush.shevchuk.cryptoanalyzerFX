@@ -1,4 +1,4 @@
-package com.example.syrovatko.cryptoanalyzer;
+package com.example.shevchuk.cryptoanalyzer;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,10 +7,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class CryptoApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("cryptoanalyzer.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(CryptoApplication.class.getResource("cryptoanalyzer.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 665, 480);
         stage.setTitle("JRU Halloween Cryptoanalyzer!");
         stage.setScene(scene);

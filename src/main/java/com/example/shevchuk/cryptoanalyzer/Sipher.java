@@ -1,11 +1,10 @@
-package com.example.syrovatko.cryptoanalyzer;
+package com.example.shevchuk.cryptoanalyzer;
 
-import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class Sipher {
 
-    public static void encryptDecrypt(int key, Path path, boolean endDec){
+    public static String encryptDecrypt(int key, Path path, boolean endDec,boolean isReturn){
 
         Validator.isEmpty(path);
         Validator.isValidKey(key);
@@ -37,7 +36,18 @@ public class Sipher {
 
                 }
         }
+        if(!isReturn) {
         FileManager.writeFile(text,state,path);
+        }
+        else if(isReturn){
+            if (text.length > 60) {
+                return text.toString().substring(0, 60);
+            }
+            else if (text.length < 60){
+                return text.toString().substring(0, text.length);
+            }
+        }
+        return "ЕСЛИ ВЫ ЭТО ВИДИТЕ ЗНАЧИТ ЧТО-ТО ПОШЛО НЕ ТАК";
     }
 
 //    public static void decrypt(int key,Path path){
